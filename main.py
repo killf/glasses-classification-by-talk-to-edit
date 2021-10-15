@@ -65,7 +65,8 @@ def main(input_dir, output_file):
         output = predict(image)
         labels, scores = predictor_to_label(output)
 
-        line = f"{file_name},{str(labels[0])},{str(labels[1])},{str(labels[2])},{str(labels[3])},{str(labels[4])}\n"
+        labels = ','.join([str(lb) for lb in labels])
+        line = f"{file_name},{labels}\n"
         open(output_file, "a+").write(line)
 
         print(f"Progress: {step + 1}/{len(files)}", end="\r", flush=True)
